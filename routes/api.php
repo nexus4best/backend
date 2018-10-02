@@ -13,6 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+
+//Area
+Route::prefix('v1')->group( function ($router) {
+	Route::get('area', 'API\AreaController@index');
+});
+
+//BrnChoice
+Route::prefix('v1')->group( function ($router) {
+	Route::get('brnchoice', 'API\BrnchoiceController@index');
+	Route::get('brnchoice/{id}', 'API\BrnchoiceController@editChoice');
 });

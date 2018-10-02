@@ -36,17 +36,23 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                //'getArea'       => App\GraphQL\Query\AreaQuery::class,
+                'getArea'       => App\GraphQL\Query\AreaQuery::class,
+                'getZone'       => App\GraphQL\Query\BrnzoneQuery::class,
                 //'getCashier'    => App\GraphQL\Query\CashierQuery::class,
-                //'getCts'        => App\GraphQL\Query\CtsQuery::class,
+                'getCts'        => App\GraphQL\Query\CtsQuery::class,
                 'getBranch'        => App\GraphQL\Query\BrnzoneQuery::class,
+                'getBrnChoice'     => App\GraphQL\Query\BrnchoiceQuery::class,
 
             ],
             'mutation' => [
                 //Area
-                //'AreaCreate' => App\GraphQL\Mutation\AreaCreateMutation::class,
-                //'AreaUpdate' => App\GraphQL\Mutation\AreaUpdateMutation::class,
-                //'AreaDelete' => App\GraphQL\Mutation\AreaDeleteMutation::class,                
+                'AreaCreate' => App\GraphQL\Mutation\AreaCreateMutation::class,
+                'AreaUpdate' => App\GraphQL\Mutation\AreaUpdateMutation::class,
+                'AreaDelete' => App\GraphQL\Mutation\AreaDeleteMutation::class,  
+                //BrnChoice
+                'BrnChoiceCreate' => App\GraphQL\Mutation\BrnchoiceCreateMutation::class,
+                'BrnChoiceUpdate' => App\GraphQL\Mutation\BrnchoiceUpdateMutation::class,  
+                'BrnChoiceDelete' => App\GraphQL\Mutation\BrnchoiceDeleteMutation::class,         
             ]
         ]
     ],
@@ -64,6 +70,7 @@ return [
         App\GraphQL\Type\CtsType::class,
         App\GraphQL\Type\ProvinceType::class,
         App\GraphQL\Type\BrnzoneType::class,
+        App\GraphQL\Type\BrnchoiceType::class,
     ],
 
     'error_formatter' => [\Folklore\GraphQL\GraphQL::class, 'formatError'],
