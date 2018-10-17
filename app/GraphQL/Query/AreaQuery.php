@@ -23,7 +23,7 @@ class AreaQuery extends Query
     public function args()
     {
         return [
-            'AreaId'    => ['name' => 'filterAreaId', 'type' => Type::int()],
+            'AreaId'    => ['name' => 'filterAreaId', 'type' => Type::string()],
             'AreaName'  => ['name' => 'filterAreaName', 'type' => Type::string()],
         ];
     }

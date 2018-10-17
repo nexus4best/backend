@@ -27,6 +27,7 @@ class BrnzoneQuery extends Query
             'BrnName'     => ['name' => 'filterBrnName', 'type' => Type::string()],
             'CtsId'     => ['name' => 'filterCtsId', 'type' => Type::string()],
             'AreaId'     => ['name' => 'filterAreaId', 'type' => Type::string()],
+            'BrnPrv'     => ['name' => 'filterBrnPrv', 'type' => Type::string()],
         ];
     }
 
@@ -38,6 +39,18 @@ class BrnzoneQuery extends Query
                     && isset($args['filterAreaId']))
         {
             return Brnzone::where('BrnCode', 'like', '%'.$args['filterBrnCode'].'%')
+                          ->where('BrnName', 'like', '%'.$args['filterBrnName'].'%')
+                          ->where('CtsId', $args['filterCtsId'])
+                          ->where('AreaId', $args['filterAreaId'])
+                          ->get();
+        }
+
+        if(isset($args['filterBrnPrv']) 
+            && isset($args['filterBrnName']) 
+                && isset($args['filterCtsId'])
+                    && isset($args['filterAreaId']))
+        {
+            return Brnzone::where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
                           ->where('BrnName', 'like', '%'.$args['filterBrnName'].'%')
                           ->where('CtsId', $args['filterCtsId'])
                           ->where('AreaId', $args['filterAreaId'])
@@ -84,6 +97,61 @@ class BrnzoneQuery extends Query
                           ->get();
         } 
 
+        //1/4
+        if(isset($args['filterBrnCode']) 
+            && isset($args['filterBrnName']) 
+                && isset($args['filterBrnPrv']))
+        {
+            return Brnzone::where('BrnCode', 'like', '%'.$args['filterBrnCode'].'%')
+                          ->where('BrnName', 'like', '%'.$args['filterBrnName'].'%')
+                          ->where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
+                          ->get();
+        }  
+
+        //2/4
+        if(isset($args['filterBrnCode']) 
+            && isset($args['filterCtsId']) 
+                && isset($args['filterBrnPrv']))
+        {
+            return Brnzone::where('BrnCode', 'like', '%'.$args['filterBrnCode'].'%')
+                          ->where('CtsId', $args['filterCtsId'])
+                          ->where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
+                          ->get();
+        } 
+
+        //3/4
+        if(isset($args['filterBrnName']) 
+            && isset($args['filterCtsId']) 
+                && isset($args['filterBrnPrv']))
+        {
+            return Brnzone::where('BrnName', 'like', '%'.$args['filterBrnName'].'%')
+                          ->where('CtsId', $args['filterCtsId'])
+                          ->where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
+                          ->get();
+        }   
+
+        //4/4
+        if(isset($args['filterBrnName']) 
+            && isset($args['filterAreaId']) 
+                && isset($args['filterBrnPrv']))
+        {
+            return Brnzone::where('BrnName', 'like', '%'.$args['filterBrnName'].'%')
+                          ->where('AreaId', $args['filterAreaId'])
+                          ->where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
+                          ->get();
+        }    
+
+        //4/4
+        if(isset($args['filterCtsId']) 
+            && isset($args['filterAreaId']) 
+                && isset($args['filterBrnPrv']))
+        {
+            return Brnzone::where('CtsId', $args['filterCtsId'])
+                          ->where('AreaId', $args['filterAreaId'])
+                          ->where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
+                          ->get();
+        }                                          
+
 
         if(isset($args['filterCtsId']) && isset($args['filterAreaId']))
         {
@@ -107,6 +175,33 @@ class BrnzoneQuery extends Query
                           ->get();
         } 
 
+        if(isset($args['filterAreaId']) && isset($args['filterBrnPrv']))
+        {
+            return Brnzone::where('AreaId', $args['filterAreaId'])
+                          ->where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
+                          ->get();
+        } 
+
+        if(isset($args['filterCtsId']) && isset($args['filterBrnPrv']))
+        {
+            return Brnzone::where('CtsId', $args['filterCtsId'])
+                          ->where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
+                          ->get();
+        }         
+
+        if(isset($args['filterBrnName']) && isset($args['filterBrnPrv']))
+        {
+            return Brnzone::where('BrnName', 'like', '%'.$args['filterBrnName'].'%')
+                          ->where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
+                          ->get();
+        } 
+
+        if(isset($args['filterBrnCode']) && isset($args['filterBrnPrv']))
+        {
+            return Brnzone::where('BrnCode', 'like', '%'.$args['filterBrnCode'].'%')
+                          ->where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')
+                          ->get();
+        }  
 
         if(isset($args['filterBrnCode']) && isset($args['filterAreaId']))
         {
@@ -130,6 +225,12 @@ class BrnzoneQuery extends Query
         }                                  
 
         // 1
+        if(isset($args['filterBrnPrv']))
+        {
+
+            return Brnzone::where('BrnPrv', 'like', '%'.$args['filterBrnPrv'].'%')->get();
+        }
+
         if(isset($args['filterAreaId']))
         {
             return Brnzone::where('AreaId', $args['filterAreaId'])->get();
@@ -152,32 +253,5 @@ class BrnzoneQuery extends Query
 
         return Brnzone::all();
 
-/*        if(isset($args['filterBrnCode']) && isset($args['filterCtsId']) && isset($args['filterAreaId']))
-        {
-            return Brnzone::where('BrnCode', $args['filterBrnCode'])
-                    ->where('CtsId', 'like', $args['filterCtsId'])
-                    ->where('AreaId', $args['filterAreaId'])
-                    ->first();
-        }*/
-
-/*        if(isset($args['filterCshIP']))
-        {
-            return Cashier::where('CshBranch', 'like', 'S%')
-                    ->where('CshIP', 'like', '%'.$args['filterCshIP'].'%')
-                    ->orderBy('CshBranch')
-                    ->paginate($args['limit'] ?? 20, ['*'], 'page', $args['page'] ?? 0 );
-        }
-
-        if(isset($args['filterCshBranch']))
-        {
-            return Cashier::where('CshBranch', 'like', 'S%')
-                    ->where('CshBranch', 'like', '%'.$args['filterCshBranch'].'%')
-                    ->orderBy('CshBranch')
-                    ->paginate($args['limit'] ?? 20, ['*'], 'page', $args['page'] ?? 0 );
-        }        
-
-        return Cashier::where('CshBranch', 'like', 'S%')
-                 ->orderBy('CshBranch')
-                 ->paginate($args['limit'] ?? 20, ['*'], 'page', $args['page'] ?? 0 );*/
     }
 }

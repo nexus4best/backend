@@ -36,12 +36,21 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
+
+                //Office
                 'getArea'       => App\GraphQL\Query\AreaQuery::class,
                 'getZone'       => App\GraphQL\Query\BrnzoneQuery::class,
-                //'getCashier'    => App\GraphQL\Query\CashierQuery::class,
+                'getProvince'    => App\GraphQL\Query\ProvinceQuery::class,
                 'getCts'        => App\GraphQL\Query\CtsQuery::class,
-                'getBranch'        => App\GraphQL\Query\BrnzoneQuery::class,
+                'getAreaGroup'  => App\GraphQL\Query\AreaGroupQuery::class,
                 'getBrnChoice'     => App\GraphQL\Query\BrnchoiceQuery::class,
+                'getBrnStatus'     => App\GraphQL\Query\BrnstatusQuery::class,
+
+                'getBrnRepairCts'     => App\GraphQL\Query\BrnRepairCtsQuery::class,
+
+                //Branch
+                'getBranch'       => App\GraphQL\Query\BrnzoneQuery::class,
+                'getBrnRepair'     => App\GraphQL\Query\BrnrepairQuery::class,
 
             ],
             'mutation' => [
@@ -52,7 +61,19 @@ return [
                 //BrnChoice
                 'BrnChoiceCreate' => App\GraphQL\Mutation\BrnchoiceCreateMutation::class,
                 'BrnChoiceUpdate' => App\GraphQL\Mutation\BrnchoiceUpdateMutation::class,  
-                'BrnChoiceDelete' => App\GraphQL\Mutation\BrnchoiceDeleteMutation::class,         
+                'BrnChoiceDelete' => App\GraphQL\Mutation\BrnchoiceDeleteMutation::class,    
+                //BrnStatus
+                'BrnStatusCreate' => App\GraphQL\Mutation\BrnstatusCreateMutation::class, 
+                'BrnStatusUpdate' => App\GraphQL\Mutation\BrnstatusUpdateMutation::class,
+                'BrnStatusDelete' => App\GraphQL\Mutation\BrnstatusDeleteMutation::class, 
+
+                //BrnRepair
+                //Branch     
+                'BrnRepairCreate' => App\GraphQL\Mutation\BrnrepairCreateMutation::class,    
+
+                //Office  
+                'BrnRepairAccept' => App\GraphQL\Mutation\BrnrepairAcceptMutation::class,    
+                'BrnRepairDelete' => App\GraphQL\Mutation\BrnrepairDeleteMutation::class,          
             ]
         ]
     ],
@@ -71,6 +92,8 @@ return [
         App\GraphQL\Type\ProvinceType::class,
         App\GraphQL\Type\BrnzoneType::class,
         App\GraphQL\Type\BrnchoiceType::class,
+        App\GraphQL\Type\BrnstatusType::class,
+        App\GraphQL\Type\BrnrepairType::class,        
     ],
 
     'error_formatter' => [\Folklore\GraphQL\GraphQL::class, 'formatError'],

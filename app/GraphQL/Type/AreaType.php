@@ -16,7 +16,7 @@ class AreaType extends BaseType
     public function fields()
     {
         return [
-        	'AreaId' 	=> ['type' => Type::nonNull(Type::int())],
+        	'AreaId' 	=> ['type' => Type::nonNull(Type::string())],
         	'AreaName' 	=> ['type' => Type::nonNull(Type::string())],
         	'AreaPhone' => ['type' => Type::nonNull(Type::string())],
         ];
